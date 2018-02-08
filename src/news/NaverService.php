@@ -16,15 +16,13 @@ class NaverService{
         $curl = new CurlService();
         
         $params['body'] = $body;
-        
-        
+
         $params['headers'][] = 'X-Naver-Client-Id: '.config('services.naver.client_id');
         $params['headers'][] = 'X-Naver-Client-Secret: '.config('services.naver.client_secret');
         
         $curl->request('GET', $api_url, $params);//
         
         if($curl->http_code() != 200){
-            
             $message = $this->err_message($curl->http_code());
             echo $message;
             return false;
